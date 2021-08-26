@@ -8,7 +8,11 @@
 
 # Create admin user
 User.create!(
+  first_name: "admin",
+  last_name: "admin",
   email: "admin@gmail.com",
   password: "paul091725",
   isadmin: true,
+  status: "approved",
+  confirmed_at: Date.new,
 )

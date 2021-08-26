@@ -17,6 +17,11 @@
   <b>Role:</b>
   <%= @user.role.name %>
 </p>
+<p>
+  <b>Status:</b>
+  <%= @user.status %>
+</p>
+
 <%= link_to "Edit", edit_user_path(@user) %>
 \|
 <%= link_to "Back", users_path %>

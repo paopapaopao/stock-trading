@@ -35,6 +35,7 @@ class TransactionsController < ApplicationController
     # end
 
     @stock = Stock.find(params[:stock_id])
+
     @transaction = @stock.transactions.create(transaction_params)
     redirect_to transactions_path()
   end

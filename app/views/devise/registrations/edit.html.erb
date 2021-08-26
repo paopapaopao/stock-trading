@@ -42,7 +42,7 @@
 
   <div class="field">
     <% if current_user.isadmin == true %>   
-      Role: <p>Admin</p>
+      Role: Admin
     <% else %>
       <% Role.all.map do |r| %>
         <% if r.id == current_user.role_id %>
@@ -50,6 +50,10 @@
         <% end %>
       <% end %>   
     <% end %>
+  </div>
+  
+  <div class="field">
+    Status: <%= current_user.status %>
   </div>
 
   <div class="actions">

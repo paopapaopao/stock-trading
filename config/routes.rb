@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pending/index'
   # match "/users", to: "users#index", via: "get"
 
   resources :roles
