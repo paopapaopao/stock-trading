@@ -8,9 +8,10 @@
          <th>Last Name</th>
          <th>Email</th>
          <th>Role Id</th>  
+         <th>Status</th>  
          <th></th>  
          <th></th>  
-         <th></th>         
+         <th></th>        
       </tr>
    </thead>
    <tbody>
@@ -20,7 +21,8 @@
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-            <td><%= user.role_id %></td>
+            <td><%= user.role_id %></td>           
+            <td><%= user.status %></td>
             <td>
               <%= link_to "Show", user %>
             </td>
