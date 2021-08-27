@@ -39,6 +39,19 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        #get status of user
+        @status = user_params[:status]
+
+        # get role name from role model/table
+        @roleId = user_params[:role_id]
+        @userRole = Role.find(@roleId)
+
+        if @status == "approved" && @userRole.name == "broker"
+          @userIsNotAdmin = User.find(params[:id])
+          ApplicationMailer.send_approved_email(@userIsNotAdmin).deliver
+        else
+        end
+
         format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
