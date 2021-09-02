@@ -10,9 +10,38 @@
 User.create!(
   first_name: "admin",
   last_name: "admin",
-  email: "admin@gmail.com",
-  password: "paul091725",
+  email: "admin@example.com",
+  password: "password",
   isadmin: true,
   status: "approved",
   confirmed_at: Date.new,
+)
+User.create!(
+  first_name: "malakas",
+  last_name: "",
+  email: "malakas@example.com",
+  password: "password",
+  isadmin: false,
+  status: "approved",
+  confirmed_at: Date.new,
+  role_id: 1
+)
+User.create!(
+  first_name: "maganda",
+  last_name: "",
+  email: "maganda@example.com",
+  password: "password",
+  isadmin: false,
+  status: "approved",
+  confirmed_at: Date.new,
+  role_id: 2
+)
+
+Role.create!(
+  name: 'broker',
+  user_id: 1
+)
+Role.create!(
+  name: 'buyer',
+  user_id: 2
 )
