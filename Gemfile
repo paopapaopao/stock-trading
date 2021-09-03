@@ -22,6 +22,7 @@ group :development, :test do
 
   gem "capybara", "~> 3.32", ">= 3.32.2"
   gem "selenium-webdriver", "~> 3.142", ">= 3.142.7"
+  gem 'dotenv-rails'
 end
 
 group :development do
