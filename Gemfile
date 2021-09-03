@@ -45,3 +45,4 @@ end
 
 gem "rails-controller-testing"
 gem 'iex-ruby-client'
+gem 'jquery-rails'
