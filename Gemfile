@@ -47,3 +47,4 @@ end
 gem "rails-controller-testing"
 gem 'iex-ruby-client'
 gem 'jquery-rails'
+gem 'rails_admin', '~> 2.0'
