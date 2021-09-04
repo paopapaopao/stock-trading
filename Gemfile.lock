@@ -381,7 +381,6 @@ DEPENDENCIES
   hamlit-rails
   iex-ruby-client
   jbuilder (~> 2.7)
-  jquery-rails
   listen (~> 3.2)
   pg
   puma (~> 4.1)
