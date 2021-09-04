@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'pending/index'
   # match "/users", to: "users#index", via: "get"
 
-  get "/get_price/:symbol" => "stocks#get_price", as: :get_price
+  get '/get_data/:symbol' => 'stocks#get_data', as: :get_data
 
   resources :roles
   devise_for :users
