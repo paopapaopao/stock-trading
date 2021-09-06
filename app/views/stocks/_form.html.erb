@@ -17,17 +17,17 @@
     <br>
     <div class="field">
       <%= f.label :company_name %>
-      <%= f.text_field :company_name, class: "form-control w-25" %>
+      <%= f.select :company_name, @company_names, {}, {class: "form-control w-50"} %>
     </div>
     <br>
     <div class="field">
       <%= f.label :price %>
-      <%= f.number_field :price, class: "form-control w-25" %>
+      <%= f.number_field :price, class: "form-control w-25", readonly: true %>
     </div>
     <br>
     <div class="field">
       <%= f.label :market_cap %>
-      <%= f.number_field :market_cap, class: "form-control w-25" %>
+      <%= f.number_field :market_cap, class: "form-control w-25", readonly: true %>
     </div>
     <div class="field">
       <%= f.number_field :user_id, id: :stock_user_id, value: current_user.id, type: :hidden %>
@@ -38,3 +38,18 @@
     </div>
   </form>
 <% end %>
+
+<script type="text/javascript">
+  $(document.getElementById('stock_company_name')).change(function() {
+    $.ajax({
+      url: 'http://localhost:3000/get_data/' + this.value,
+      beforeSend: function(xhr) {
+        xhr.overrideMimeType('text/plain; charset=x-user-defined');
+      }
+    }).done(function(data) {
+      data = JSON.parse(data);
+      document.getElementById('stock_price').value = data[0];
+      document.getElementById('stock_market_cap').value = data[1];
+    });
+  });
+</script>
