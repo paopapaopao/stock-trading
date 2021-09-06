@@ -17,6 +17,29 @@ class StocksController < ApplicationController
   def new
     # @stock = Stock.new
     @stock = current_user.stocks.build
+
+    client = IEX::Api::Client.new(
+      publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
+      endpoint: 'https://cloud.iexapis.com/v1'
+      # endpoint: 'https://sandbox.iexapis.com/v1'
+    )
+    symbols = client.ref_data_symbols.sample(20).map { |s| s.symbol }
+
+    @company_names = [['-- Select a Company --', '']]
+    @company_names += symbols.map { |s| [client.key_stats(s).company_name, s] }
+  end
+
+  def get_data
+    client = IEX::Api::Client.new(
+      publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
+      endpoint: 'https://cloud.iexapis.com/v1'
+      # endpoint: 'https://sandbox.iexapis.com/v1'
+    )
+    symbol = params[:symbol]
+
+    latest_price = client.quote(symbol).latest_price
+    market_cap = client.key_stats(symbol).market_cap
+    render json: [latest_price, market_cap]
   end
 
   # GET /stocks/1/edit
