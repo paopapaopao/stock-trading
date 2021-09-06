@@ -22,13 +22,4 @@
     <%= f.submit "Buy", class: "btn btn-warning text-dark" %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  let transactionShare = document.getElementById('transaction_share');
-  let price = document.getElementById('price');
-  let transactionValue = document.getElementById('transaction_value');
-
-  transactionShare.addEventListener('keyup', function() {
-    transactionValue.value = transactionShare.value * price.value;
-  });
-</script>
+<%= javascript_pack_tag 'compute_value' %>
