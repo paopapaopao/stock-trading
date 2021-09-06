@@ -7,7 +7,9 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("../packs/compute_stocks")
+
+require('load_data')
+require('compute_value')
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
