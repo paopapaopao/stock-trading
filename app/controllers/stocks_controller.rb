@@ -23,10 +23,8 @@ class StocksController < ApplicationController
       endpoint: 'https://cloud.iexapis.com/v1'
       # endpoint: 'https://sandbox.iexapis.com/v1'
     )
-    symbols = client.ref_data_symbols.sample(20).map { |s| s.symbol }
 
-    @company_names = [['-- Select a Company --', '']]
-    @company_names += symbols.map { |s| [client.key_stats(s).company_name, s] }
+    @symbols = client.ref_data_symbols.sample(20).map { |s| s.symbol }
   end
 
   def get_data
@@ -37,9 +35,10 @@ class StocksController < ApplicationController
     )
     symbol = params[:symbol]
 
+    company_name = client.key_stats(symbol).company_name
     latest_price = client.quote(symbol).latest_price
     market_cap = client.key_stats(symbol).market_cap
-    render json: [latest_price, market_cap]
+    render json: [company_name, latest_price, market_cap]
   end
 
   # GET /stocks/1/edit
@@ -112,6 +111,6 @@ class StocksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def stock_params
-    params.require(:stock).permit(:company_name, :price, :market_cap, :user_id)
+    params.require(:stock).permit(:symbol, :company_name, :price, :market_cap, :user_id)
   end
 end
