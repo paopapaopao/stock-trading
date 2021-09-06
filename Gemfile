@@ -47,3 +47,4 @@ end
 gem "rails-controller-testing"
 gem 'iex-ruby-client'
 gem 'rails_admin', '~> 2.0'
+gem "haml-rails", "~> 2.0"
