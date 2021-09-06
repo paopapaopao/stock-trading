@@ -1,0 +1,55 @@
+%h1 Listing transactions
+%table.table.table-bordered.table-dark.table-hover
+  %thead
+    %tr
+      %th Transaction Id
+      %th Share
+      %th Price
+      %th Value
+      %th Stock Id
+      %th Stock Name
+      %th Broker
+      %th
+      %th
+      %th
+  %tbody
+    - @transactions.each do |transaction|
+      - if current_user.isadmin == true
+        %tr
+          %td
+            = transaction.id
+          %td
+            = transaction.share
+          %td
+            = transaction.price
+          %td
+            = transaction.value
+          %td
+            = transaction.stock_id
+          %td
+            = transaction.stock.company_name
+          %td
+            = transaction.user.email
+          %td
+            = link_to "Show", [transaction.stock, transaction]
+          %td
+            = link_to "Edit", edit_stock_transaction_path(transaction.stock, transaction)
+          %td
+            = link_to "Destroy", [transaction.stock, transaction], :method => :delete, :data => { :confirm => "Are you sure?" }
+      - elsif current_user.role.name == "buyer" && transaction.user == current_user
+        %tr
+          %td
+            = transaction.share
+          %td
+            = transaction.share
+          %td
+            = transaction.price
+          %td
+            = transaction.value
+          %td
+            = transaction.stock_id
+          %td
+            = transaction.stock.company_name
+          %td
+            = transaction.stock.user.email
+      - else

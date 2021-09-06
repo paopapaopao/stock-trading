@@ -1,0 +1,22 @@
+%p#notice
+  = notice
+%p
+  %b Company symbol:
+  = @stock.symbol
+%p
+  %b Company name:
+  = @stock.company_name
+%p
+  %b Price:
+  = @stock.price
+%p
+  %b Market cap:
+  = @stock.market_cap
+- if current_user.role == nil
+  %h2 Buy stock:
+  = render "transactions/form", transaction: @stock.transactions.build
+- else
+  - if current_user.role.name == "buyer"
+    %h2 Buy stock:
+    = render "transactions/form", transaction: @stock.transactions.build
+= link_to "Back", stocks_path

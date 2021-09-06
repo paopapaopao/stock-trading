@@ -1,0 +1,37 @@
+%h2 New
+= form_for User.new, url: create_user_path do |f|
+  .form-group
+    .field
+      = f.label :first_name
+      %br/
+      = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control w-25"
+    %br/
+    .field
+      = f.label :last_name
+      %br/
+      = f.text_field :last_name, autocomplete: "last_name", class: "form-control w-25"
+    %br/
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autocomplete: "email", class: "form-control w-25"
+    %br/
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "new-password", class: "form-control w-25"
+    %br/
+    .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control w-25"
+    %br/
+    .field
+      = f.label :role_id
+      = f.select :role_id, Role.all.map { |c| [c.name, c.id] }
+    %br/
+    .actions
+      = f.submit "Sign up", class: "btn btn-warning text-dark"

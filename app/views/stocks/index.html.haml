@@ -1,0 +1,50 @@
+%h1 Listing stocks
+%table.table.table-bordered.table-dark.table-hover
+  %thead
+    %tr
+      %th Stock Id
+      %th Company Symbol
+      %th Company Name
+      %th Price
+      %th Market Cap
+      %th Broker
+      - if current_user.isadmin == true
+        %th
+        %th
+        %th
+      - elsif current_user.role.name == "buyer"
+        %th
+      - else
+        %th
+        %th
+  %tbody
+    - @stocks.each do |stock|
+      - if current_user.isadmin == true
+        %tr
+          %th{:scope => "row"}= stock.id
+          %td= stock.symbol
+          %td= stock.company_name
+          %td= stock.price
+          %td= stock.market_cap
+          %td= stock.user.email
+          %td= link_to "Show", stock
+          %td= link_to "Edit", edit_stock_path(stock)
+          %td= link_to "Destroy", stock, :method => :delete, :data => { :confirm => "Are you sure?" }
+      - elsif current_user.role.name == "buyer" || stock.user == current_user
+        %tr
+          %th{:scope => "row"}= stock.id
+          %td= stock.symbol
+          %td= stock.company_name
+          %td= stock.price
+          %td= stock.market_cap
+          %td= stock.user.email
+          %td= link_to "Show", stock
+          - if stock.user == current_user
+            %td
+              = link_to "Edit", edit_stock_path(stock)
+      - else
+%br/
+- if current_user.isadmin == true
+  = link_to "Add Stock", new_stock_path, class: "btn btn-warning"
+- if current_user.isadmin == false && current_user.role.name == "broker"
+  = link_to "Add Stock", new_stock_path, class: "btn btn-warning"

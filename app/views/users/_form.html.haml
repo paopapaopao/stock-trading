@@ -1,0 +1,35 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = "#{pluralize(@user.errors.count, "error")} prohibited this stock from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li
+            = msg
+  .form-group
+    .field
+      = f.label :first_name
+      = f.text_field :first_name, class: "form-control w-25"
+    %br/
+    .field
+      = f.label :last_name
+      = f.text_field :last_name, class: "form-control w-25"
+    %br/
+    .field
+      = f.label :email
+      = f.email_field :email, class: "form-control w-25"
+    %br/
+    .field
+      .input-group.mb-3
+        .input-group-prepend
+          %label.input-group-text{:for => "inputGroupSelect01"} Role
+        = f.select :role_id, Role.all.map { |c| [c.name, c.id] }, class: "form-control w-10 custom-select", id: "inputGroupSelect01"
+    %br/
+    .field
+      .input-group.mb-3
+        .input-group-prepend
+          %label.input-group-text{:for => "inputGroupSelect02"} Status
+        = f.select :status, ["pending", "approved"], class: "form-control w-10 custom-select", id: "inputGroupSelect02"
+    .actions
+      = f.submit "Save", class: "btn btn-warning text-dark"

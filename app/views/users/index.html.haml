@@ -1,0 +1,30 @@
+%h1 List Users
+%table.table.table-bordered.table-dark.table-hover
+  %thead
+    %tr
+      %th User Id
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Role Id
+      %th Status
+      %th
+      %th
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.email
+        %td= user.role_id
+        %td= user.status
+        %td
+          = link_to "Show", user
+        %td
+          = link_to "Edit", edit_user_path(user)
+        %td
+          = link_to "Destroy", user, :method => :delete, :data => { :confirm => "Are you sure?" }
+%br/
+= link_to "Add User", new_user_path, class: "btn btn-warning"

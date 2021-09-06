@@ -1,0 +1,17 @@
+%p#notice
+  = notice
+%p
+  %b Share:
+  = @transaction.share
+%p
+  %b Price:
+  = @transaction.price
+%p
+  %b Stock id:
+  = @transaction.stock_id
+%p
+  %b Price:
+  = @transaction.user_id
+= link_to "Edit", edit_stock_transaction_path(@transaction)
+\\|
+= link_to "Back", stock_transactions_path

@@ -1,0 +1,19 @@
+= form_with(model: [@stock, transaction], local: true) do |f|
+  .field
+    = f.label :share
+    = f.number_field :share, class: "form-control w-25"
+  %br/
+  .field
+    Price
+    %input#price.form-control.w-25{:readonly => "readonly", :type => "number", :value => "#{@stock.price}"}/
+    = f.hidden_field :price, value: @stock.price
+  %br/
+  .field
+    Value
+    \#{f.number_field :value, class: "form-control w-25", readonly: true}
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :stock_id, value: :stock_id
+  %br/
+  .actions
+    = f.submit "Buy", class: "btn btn-warning text-dark"
+= javascript_pack_tag 'compute_value'
