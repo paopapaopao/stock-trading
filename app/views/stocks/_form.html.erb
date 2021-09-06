@@ -16,8 +16,13 @@
   <div class="form-group">
     <br>
     <div class="field">
+      <%= f.label :symbol %>
+      <%= f.select :symbol, @symbols, {}, {class: "form-control w-25"} %>
+    </div>
+    <br>
+    <div class="field">
       <%= f.label :company_name %>
-      <%= f.select :company_name, @company_names, {}, {class: "form-control w-50"} %>
+      <%= f.text_field :company_name, class: "form-control w-50", readonly: true %>
     </div>
     <br>
     <div class="field">
@@ -40,7 +45,7 @@
 <% end %>
 
 <script type="text/javascript">
-  $(document.getElementById('stock_company_name')).change(function() {
+  $(document.getElementById('stock_symbol')).change(function() {
     $.ajax({
       url: 'http://localhost:3000/get_data/' + this.value,
       beforeSend: function(xhr) {
@@ -48,8 +53,9 @@
       }
     }).done(function(data) {
       data = JSON.parse(data);
-      document.getElementById('stock_price').value = data[0];
-      document.getElementById('stock_market_cap').value = data[1];
+      document.getElementById('stock_company_name').value = data[0];
+      document.getElementById('stock_price').value = data[1];
+      document.getElementById('stock_market_cap').value = data[2];
     });
   });
 </script>
