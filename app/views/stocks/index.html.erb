@@ -3,11 +3,12 @@
    <thead>
       <tr>
          <th>Stock Id</th>
+         <th>Company Symbol</th>
          <th>Company Name</th>
          <th>Price</th>
          <th>Market Cap</th>
          <th>Broker</th>
-         <% if current_user.isadmin == true %>  
+         <% if current_user.isadmin == true %>
             <th></th>
             <th></th>
             <th></th>
@@ -24,6 +25,7 @@
       <% if current_user.isadmin == true %>
         <tr>
           <th scope="row"><%= stock.id %></th>
+          <td><%= stock.symbol %></td>
           <td><%= stock.company_name %></td>
           <td><%= stock.price %></td>
           <td><%= stock.market_cap %></td>
@@ -35,6 +37,7 @@
         <% elsif current_user.role.name == "buyer" || stock.user == current_user %>
           <tr>
             <th scope="row"><%= stock.id %></th>
+            <td><%= stock.symbol %></td>
             <td><%= stock.company_name %></td>
             <td><%= stock.price %></td>
             <td><%= stock.market_cap %></td>
@@ -56,6 +59,6 @@
   <%= link_to "Add Stock", new_stock_path, class: "btn btn-warning" %>
 <% end %>
 
-<% if current_user.isadmin == false && current_user.role.name == "broker" %> 
+<% if current_user.isadmin == false && current_user.role.name == "broker" %>
   <%= link_to "Add Stock", new_stock_path, class: "btn btn-warning" %>
 <% end %>
