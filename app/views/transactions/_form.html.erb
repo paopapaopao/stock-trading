@@ -1,17 +1,18 @@
 <%= form_with(model: [@stock, transaction], local: true) do |f| %>
   <div class="field">
     <%= f.label :share %>
-    <%= f.number_field :share, class: "form-control", value: 1 %>
+    <%= f.number_field :share, class: "form-control w-25" %>
   </div>
   <br>
   <div class="field">
-    Price: <input type="text" id="price" value="<%= @stock.price %>" disabled>
+    Price
+    <input type="number" id="price" value="<%= @stock.price %>" readonly class="form-control w-25">
     <%= f.hidden_field :price, value: @stock.price %>
   </div>
   <br>
   <div class="field">
-    Value:
-    <%= f.number_field :value, class: "form-control" %>
+    Value
+    <%= f.number_field :value, class: "form-control w-25", readonly: true %>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
@@ -21,3 +22,13 @@
     <%= f.submit "Buy", class: "btn btn-warning text-dark" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  let transactionShare = document.getElementById('transaction_share');
+  let price = document.getElementById('price');
+  let transactionValue = document.getElementById('transaction_value');
+
+  transactionShare.addEventListener('keyup', function() {
+    transactionValue.value = transactionShare.value * price.value;
+  });
+</script>
