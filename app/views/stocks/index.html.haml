@@ -11,11 +11,9 @@
       - if current_user.isadmin == true
         %th
         %th
-        %th
       - elsif current_user.role.name == "buyer"
         %th
       - else
-        %th
         %th
   %tbody
     - @stocks.each do |stock|
@@ -28,7 +26,6 @@
           %td= stock.market_cap
           %td= stock.user.email
           %td= link_to "Show", stock
-          %td= link_to "Edit", edit_stock_path(stock)
           %td= link_to "Destroy", stock, :method => :delete, :data => { :confirm => "Are you sure?" }
       - elsif current_user.role.name == "buyer" || stock.user == current_user
         %tr
@@ -39,9 +36,6 @@
           %td= stock.market_cap
           %td= stock.user.email
           %td= link_to "Show", stock
-          - if stock.user == current_user
-            %td
-              = link_to "Edit", edit_stock_path(stock)
       - else
 %br/
 - if current_user.isadmin == true
