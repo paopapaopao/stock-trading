@@ -8,8 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require('load_data')
-require('compute_value')
+require("../packs/load_data")
+require("../packs/compute_value")
 
 import "bootstrap"
 
