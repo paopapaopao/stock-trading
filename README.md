@@ -1,6 +1,6 @@
 # Hi there 👋
 
-This repo serves as the main repo for our Rails Projects. 
+This repo serves as the main repo for our Rails Projects.
 
 
 #### Version
@@ -54,5 +54,7 @@ Then, clone your forked repo to your machine
 
 <img width="1244" alt="Screen Shot 2021-03-23 at 10 11 12 PM" src="https://user-images.githubusercontent.com/9253881/112160530-36713700-8c25-11eb-9f00-d69a3a36343f.png">
 
-
-
+* Defaut database values / Seeds:
+  * Admin: email: "admin@example.com", password: "password"
+  * User1: email: "malakas@example.com", password: "password"
+  * User2: email: "maganda@example.com", password: "password"
